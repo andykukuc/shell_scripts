@@ -1,19 +1,63 @@
-# Random Shells Scripts
+# shell_scripts
 
-## About
+A collection of bash scripts built for managing Linux servers, VMs, firewalls, and home lab infrastructure. Used in a real environment running KVM/QEMU, pfSense, Docker, and various self-hosted services.
 
-Welcome to my **Random Projects Repository**! This is a collection of various projects, experiments, and ideas that I’ve been working on. Some of them are complete, while others are just me tinkering around and exploring new concepts.
+## Scripts
 
-Feel free to browse through the files—each project represents a unique pursuit of curiosity and learning.
+### `backup/`
 
-## Why This Exists
+| Script | Description |
+|--------|-------------|
+| `backup-qemu.sh` | Backs up QEMU/KVM virtual machine disk images to a NAS |
+| `backup-qemu.service` | systemd service unit for the QEMU backup script |
+| `backup-qemu.timer` | systemd timer to run the backup on a schedule |
+| `backup-claude.sh` | Backs up Claude Code configuration and custom commands |
+| `BACKUP_SETUP.md` | Setup guide for the backup system |
 
-Sometimes inspiration strikes in unexpected ways, and this repository is where I channel that energy. Whether it's for fun, learning new technologies, or solving problems, every project here tells its own story.
+### `cert_script/`
 
-## Disclaimer
+| Script | Description |
+|--------|-------------|
+| `cert.sh` | Automates SSL certificate renewal (Let's Encrypt / ACME) |
+| `README.md` | Usage and configuration guide |
 
-Since this is a personal repository, not all projects may be polished or production-ready. Use at your own discretion!
+### `firewall_scripts/`
 
-## Feedback
+| Script | Description |
+|--------|-------------|
+| `firewall_rules.sh` | Applies iptables/nftables rules for the host firewall |
+| `clean-rule.sh` | Flushes and resets firewall rules to a clean state |
 
-Got thoughts, suggestions, or improvements? I’m always open to feedback. Drop me a note or open an issue!
+### `media_stack_script/`
+
+| Script | Description |
+|--------|-------------|
+| `docker-compose.yml` | Docker Compose stack for self-hosted media services |
+| `torrent.sh` | Helper script for torrent client management |
+| `README.md` | Stack setup guide |
+
+### `secure_deletion_script/`
+
+| Script | Description |
+|--------|-------------|
+| `clean_file.sh` | Securely wipes files using `shred` before deletion |
+| `README.md` | Usage notes |
+
+### `connect_to_vm.bash`
+
+Interactive helper to SSH into KVM virtual machines by name. Lists running VMs and connects to the selected one.
+
+## Environment
+
+- Tested on: Ubuntu 22.04 / Debian 12
+- Requires: `bash`, `rsync`, `ssh`, `docker`, `systemd`
+
+## Usage Notes
+
+- Review each script before running — some modify firewall rules or delete data
+- Backup scripts assume SSH key-based access to the destination NAS
+- Firewall scripts are environment-specific — edit IP ranges before use
+
+## License
+
+MIT
