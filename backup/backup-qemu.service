@@ -1,0 +1,16 @@
+[Unit]
+Description=QEMU VM and Docker Container Backup
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=/root/scripts/backup-qemu.sh
+Environment="USE_TIMESTAMP=true"
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=backup-qemu
+
+# Optional: send email on failure
+OnFailure=unit-status-mail@%n.service

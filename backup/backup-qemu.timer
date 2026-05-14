@@ -1,0 +1,14 @@
+[Unit]
+Description=Monthly QEMU/Docker Backup Timer
+Requires=backup-qemu.service
+
+[Timer]
+# Run on the 1st of each month at 2:00 AM
+OnCalendar=*-*-01 02:00:00
+# Randomize start time by up to 10 minutes to avoid thundering herd
+RandomizedDelaySec=10min
+# If the timer misses the scheduled time (e.g., system was off), run it when system comes up
+Persistent=true
+
+[Install]
+WantedBy=timers.target
